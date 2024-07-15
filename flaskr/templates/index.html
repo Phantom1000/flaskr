@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Главная страница{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <div>Добро пожаловать, {{ g.user.username }}</div>
+{% endblock %}
