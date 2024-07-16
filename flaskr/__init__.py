@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, session, g
+from flaskr.db import get_db
 from flaskr.auth import login_required
 
 
@@ -26,5 +27,9 @@ def create_app(test_config=None):
 
     from . import auth
     app.register_blueprint(auth.bp)
+
+    from . import blog
+    app.register_blueprint(blog.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app

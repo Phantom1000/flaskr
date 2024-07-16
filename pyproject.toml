@@ -1,0 +1,12 @@
+[project]
+name = "flaskr"
+version = "1.0.0"
+description = "Приложение с авторизацией и управлением постами"
+dependencies = [
+    "flask",
+    "python-dotenv"
+]
+
+[build-system]
+requires = ["flit-core<4"]
+build-backend = "flit_core.buildapi"

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Редактирование поста{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="title">Название</label>
+        <input name="title" id="title" value="{{ request.form['title'] or post['id'] }}" required>
+        <label for="body">Содержание</label>
+        <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
+        <input type="submit" value="Сохранить">
+    </form>
+    <hr>
+    <form action="{{ url_for('blog.delete', post_id=post['id']) }}" method="post">
+        <input class="danger" type="submit" value="Удалить" onclick="return confirm('Вы уверены?');">
+    </form>
+{% endblock %}

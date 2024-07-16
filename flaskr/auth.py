@@ -21,7 +21,7 @@ def login_required(view):
     return wrapped_view
 
 
-@bp.before_request
+@bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
 
@@ -30,12 +30,6 @@ def load_logged_in_user():
     else:
         query = 'SELECT * FROM user WHERE id = ?'
         g.user = get_db().execute(query, (user_id,)).fetchone()
-
-
-@bp.route("/")
-@login_required
-def index():
-    return render_template('index.html')
 
 
 @bp.route('/register', methods=['GET', 'POST'])
@@ -84,7 +78,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('auth.index'))
+            return redirect(url_for('index'))
 
         flash(error)
 
@@ -94,4 +88,4 @@ def login():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('auth.index'))
+    return redirect(url_for('index'))
