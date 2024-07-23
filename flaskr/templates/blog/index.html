@@ -13,7 +13,7 @@
             <header>
                 <div>
                     <h1>{{ post['title'] }}</h1>
-                    <div class="about">{{ post['username'] }} в {{ post['created'].strftime('%d-%m-%Y') }}</div>
+                    <div class="about">{{ post['username'] }} {{ post['created'].strftime('%d.%m.%Y') }}</div>
                 </div>
                 {% if g.user['id'] == post['author_id'] %}
                     <a class="action" href="{{ url_for('blog.update', post_id=post['id']) }}">Изменить</a>
